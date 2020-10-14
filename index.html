@@ -1,0 +1,52 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hammer .js</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.1/tailwind.min.css" integrity="sha512-wOgO+8E/LgrYRSPtvpNg8fY7vjzlqdsVZ34wYdGtpj/OyVdiw5ustbFnMuCb75X9YdHHsV5vY3eQq3wCE4s5+g==" crossorigin="anonymous" />
+    <style>
+        #content{
+            /*transform: translateX(250px);*/
+        }
+    </style>
+
+</head>
+<body>
+    <div class="h-full w-full bg-teal-200 overflow-hidden relative">
+        <div class="h-full bg-gray-600 absolute z-0" style="width: 250px;">
+            menu here
+        </div>
+        <div class="bg-red-500 absolute z-1 h-full w-full" id="content">
+            content
+        </div>       
+    </div>
+
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+    <script src="zepto.js"></script>
+    <script src="zepto.fx.js"></script>
+    <script>
+        (function($){
+            var content = document.getElementById('content');
+            var mc = new Hammer(content);
+            mc.on("swiperight", function(ev) {
+                $('#content').animate({translateX:'250px'}, 200);
+            }).on("swipeleft", function(ev) {
+                $('#content').animate({translateX:'0px'}, 100);
+            })
+        })(Zepto);
+
+        //var myElement = document.getElementById('content');
+
+        // create a simple instance
+        // by default, it only adds horizontal recognizers
+        //var mc = new Hammer(myElement);
+
+        // listen to events...
+        //mc.on("panleft panright tap press", function(ev) {
+            //console.log(ev)
+            //myElement.textContent = ev.type +" gesture detected.";
+        //});
+    </script>
+</body>
+</html>
