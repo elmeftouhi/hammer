@@ -29,10 +29,19 @@
         (function($){
             var content = document.getElementById('content');
             var mc = new Hammer(content);
-            mc.on("swiperight", function(ev) {
-                $('#content').animate({translateX:'250px'}, 200);
-            }).on("swipeleft", function(ev) {
-                $('#content').animate({translateX:'0px'}, 100);
+            mc.on("panright", function(ev) {
+                if(ev.deltaX < 250){
+                    $('#content').animate({translateX: ev.deltaX+'px'});
+                    $('#content').html(ev.deltaX);                   
+                }
+
+            }).on("panleft", function(ev) {
+                if(ev.deltaX < -250){
+                    $('#content').animate({translateX: (250 + ev.deltaX) +'px'});
+                    $('#content').html(ev.deltaX);
+                }else{
+                    $('#content').html(ev.deltaX);
+                }
             })
         })(Zepto);
 
